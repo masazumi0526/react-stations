@@ -1,14 +1,26 @@
-// DO NOT DELETE
+import React, { useState } from 'react';
+import { Header } from './Header';
+import { Description } from './Description';
+import { DogListContainer } from './DogListContainer';
 
-import './App.css'
-
-/**
- * @type {() => JSX.Element}
- */
 export const App = () => {
+  const [showImages, setShowImages] = useState(false);
+  const [selectedBreed, setSelectedBreed] = useState('');
+
+  const handleShowImages = (breed) => {
+    setSelectedBreed(breed);
+    setShowImages(true);
+  };
+
   return (
     <div>
-      <h2>Hello, world!</h2>
+      <Header />
+      <Description />
+      <DogListContainer 
+        showImages={showImages} 
+        selectedBreed={selectedBreed} 
+        onShowImages={handleShowImages} 
+      />
     </div>
-  )
-}
+  );
+};
